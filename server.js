@@ -12,9 +12,13 @@ app.use(express.static('public')); // seting public path
 app.use(express.urlencoded({ extended: true })); // For Parsing URLs
 
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Server running on port 3000');
+app.listen(process.env.PORT || 5000, () => {
+    console.log('Server running on port 5000');
 })
+
+// app.use((req, res) => {
+//     res.status(404).send("<h2 style='text-align: center'> Not Found</h2>");
+// })
 
 // form routes
 app.use(formRoutes);

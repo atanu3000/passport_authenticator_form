@@ -10,5 +10,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+}
+
+.container-fluid {
+    max-width: 450px;
+}
+
+form {
+    border: none !important;
+}
+
+.or-line {
+    display: flex;
 }
