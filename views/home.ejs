@@ -2,7 +2,28 @@
 <html lang="en">
     <%- include("./partials/head.ejs") %>
     <body>
-        <div class="container-fluid"></div>
+        <div class="container-fluid">
+            <div class="img text-center">
+                <img src="icons/welcome2.png" alt="" />
+            </div>
+            <div class="notes my-5">
+                <h2 class="fw-bold">Welcome!</h2>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Ab, veniam.
+                </p>
+            </div>
+            <div class="button">
+                <a href="/login" class="btn btn-primary form-control my-2"
+                    >LOG IN</a
+                >
+                <a
+                    href="/register"
+                    class="btn btn-outline-primary form-control my-2"
+                    >SIGN UP</a
+                >
+            </div>
+        </div>
 
         <%- include("./partials/footer.ejs")%>
     </body>

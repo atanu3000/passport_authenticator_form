@@ -4,22 +4,18 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-
 body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .container-fluid {
     max-width: 450px;
 }
-
+.img img {
+    width: 90%;
+}
 form {
     border: none !important;
-}
-
-.or-line {
-    display: flex;
 }

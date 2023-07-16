@@ -3,18 +3,18 @@
     <%- include("./partials/head.ejs") %>
     <body>
         <div class="container-fluid">
-            <h2 class="text-center">Sign up Here</h2>
+            <h2 class="text-center fw-bold">Sign up Here</h2>
             <div class="text-center" style="margin: 2em 0 1em 0">
                 <button type="button" class="btn btn-outline-primary mx-1">Google</button>
                 <button type="button" class="btn btn-outline-warning mx-1">GitHub</button>
                 <button type="button" class="btn btn-outline-success mx-1">Facebook</button>
             </div>
             <h6 class="text-center my-4">OR</h6>
-            <form action="" class="text form-control">
+            <form action="/register" method="POST" class="text form-control">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input
-                        type="text"
+                        type="name"
                         class="form-control"
                         placeholder="John Doe"
                         required
@@ -55,7 +55,7 @@
             </form>
             <div class="text-center mt-4">
                 <h6 class="text-center">Already have an account?</h6>
-                <a href="/login" class="btn btn-primary mt-2">Sign in</a>
+                <a href="/login" class="btn btn-outline-primary mt-2">Sign in</a>
             </div>
         </div>
 
