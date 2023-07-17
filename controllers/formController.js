@@ -75,7 +75,7 @@ const registerAccount = (req, res) => {
                             newUser.password = hash;
                             newUser.save()
                                 .then(user => {
-                                    // req.flash('success_msg', 'You are now registered and can log in');
+                                    req.flash('success_msg', 'You are now registered and can log in');
                                     res.redirect('/login');
                                 })
                                 .catch(err => console.log(err));
@@ -97,10 +97,7 @@ const updateProfile = (req, res) => {
     const id = req.params.id;
     UserData.findByIdAndUpdate(id, updateData)
         .then(() => {
-            // req.flash(
-            //     "success_msg",
-            //     "You have successfully updated your User Profile!"
-            // );
+            req.flash( "success_msg", "You have successfully updated your User Profile!" );
             res.redirect("/dashboard");
         })
         .catch(err => console.log(err));
@@ -113,7 +110,7 @@ const logoutUser = (req, res) => {
             console.log(err);
             return next(err);
         }
-        //   req.flash("success_msg", "You have successfully logged out!");
+          req.flash("success_msg", "You have successfully logged out!");
         res.redirect("/login");
     });
 }

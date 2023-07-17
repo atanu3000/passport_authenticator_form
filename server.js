@@ -43,11 +43,20 @@ app.use(passport.session());
 app.use(express.static('public')); // seting public path
 app.use(express.json()); // JSON Response
 app.use(express.urlencoded({ extended: true })); // For Parsing URLs
+app.use(flash()); //enable flash
 
 
 // app.use((req, res) => {
 //     res.status(404).send("<h2 style='text-align: center'> Not Found</h2>");
 // })
+
+// Global variables
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error = req.flash("error");
+    next();
+});
 
 // impoting all routes
 const formRoutes = require('./routes/route');
