@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+    <body>
+        <div class="container-fluid">
+            <h2 class="text-center fw-bold my-5">Update your profile</h2>
+            <form action="/edit/<%= user._id%>" method="POST" class="text form-control">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input
+                        type="name"
+                        name="name"
+                        class="form-control"
+                        placeholder="John Doe"
+                        value="<%= user.name%>"
+                        required
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="name@gmail.com"
+                        value="<%= user.email%>"
+                        required
+                    />
+                </div>
+                <div class="mb-3">
+                    <button class="form-control btn btn-primary" type="submit">UPDATE</button>
+                </div>
+            </form>
+        </div>
+
+        <%- include("./partials/footer.ejs")%>
+    </body>
+</html>

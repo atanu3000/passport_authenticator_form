@@ -2,8 +2,27 @@
 <html lang="en">
     <%- include("./partials/head.ejs") %>
     <body>
-        <div class="container-fluid">
-            <h3 class="text-center">Welcome to your Dashboard 🎉</h3>
+        <div class="container-fluid border mx-1">
+            <h3 class="text-center my-5">Welcome to your Dashboard 🎉</h3>
+            <div class="text-center mt-3 mb-5">
+                <h2 class="bg-secondary bg-opacity-25 rounded-circle p-2 mx-auto d-flex align-items-center justify-content-center" style="width: 4.5rem; height: 4.5rem;"><%= profilePic %></h2>
+            </div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td><%= user.name %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td><%= user.email %></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center mt-5 mb-3">
+                <a href="/edit/" class="btn btn-warning form-control w-25 mx-1">Edit </a>
+                <a href="/logout" class="btn btn-danger form-control w-25 mx-1">Logout</a>
+            </div>
         </div>
 
         <%- include("./partials/footer.ejs")%>
