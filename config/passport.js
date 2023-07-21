@@ -29,13 +29,13 @@ module.exports = () => {  // perform local strategy
       });
   }));
 
+  require('dotenv').config(); // Load environment variables from .env file
+
   const YOUR_GOOGLE_CLIENT_ID = "344009278028-p79kkogf24avg9jfm45dkkn15krej8np.apps.googleusercontent.com";
   const YOUR_GOOGLE_CLIENT_SECRET = "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";
-  let YOUR_callbackURL = "";
+  let YOUR_callbackURL = "http://localhost:5000/auth/google/callback";
 
-  if (process.env.NODE_ENV === 'development') {
-    YOUR_callbackURL = "http://localhost:5000/auth/google/callback";
-  } else if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     YOUR_callbackURL = "https://passport-authenticator-form.onrender.com/auth/google/callback";
   }
   passport.use(new GoogleStrategy({ // perform google strategy

@@ -15,9 +15,22 @@ const homePage = (req, res) => {
 //finding profile logo for dashboard
 const profilePic = (str) => {
     const name = str.name;
+    let concatenatedChars = "";
+
+    function countWords(name) {
+        name = name.trim();
+        const wordsArray = name.split(/\s+/);
+        const filteredWordsArray = wordsArray.filter(word => word !== '');
+        return filteredWordsArray.length;
+    }
+
+    if (countWords(name) == 1) {
+        concatenatedChars = name[0].toUpperCase();
+        return concatenatedChars;
+    }
     const [firstChar, secondChar] = name.split(" ").map(word => word.charAt(0));
-    const concatenatedChars = `${firstChar}${secondChar}`;
-    return concatenatedChars;
+    concatenatedChars = `${firstChar}${secondChar}`;
+    return concatenatedChars.toUpperCase();
 }
 
 // rendering profile page
