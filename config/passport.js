@@ -31,11 +31,17 @@ module.exports = () => {  // perform local strategy
 
   const YOUR_GOOGLE_CLIENT_ID = "344009278028-p79kkogf24avg9jfm45dkkn15krej8np.apps.googleusercontent.com";
   const YOUR_GOOGLE_CLIENT_SECRET = "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";
+  let YOUR_callbackURL = "";
 
+  if (process.env.NODE_ENV === 'development') {
+    YOUR_callbackURL = "http://localhost:5000/auth/google/callback";
+  } else if (process.env.NODE_ENV === 'production') {
+    YOUR_callbackURL = "https://passport-authenticator-form.onrender.com/auth/google/callback";
+  }
   passport.use(new GoogleStrategy({ // perform google strategy
     clientID: YOUR_GOOGLE_CLIENT_ID,
     clientSecret: YOUR_GOOGLE_CLIENT_SECRET,
-    callbackURL: '/auth/google/callback',
+    callbackURL: YOUR_callbackURL,
     // passReqToCallback: true,
   },
     async (accessToken, refreshToken, profile, done) => {
