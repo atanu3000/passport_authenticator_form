@@ -35,7 +35,7 @@ module.exports = () => {  // perform local strategy
   passport.use(new GoogleStrategy({ // perform google strategy
     clientID: YOUR_GOOGLE_CLIENT_ID,
     clientSecret: YOUR_GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:5000/auth/google/callback',
+    callbackURL: '/auth/google/callback',
     // passReqToCallback: true,
   },
     async (accessToken, refreshToken, profile, done) => {
