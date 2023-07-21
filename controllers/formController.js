@@ -37,7 +37,7 @@ const registerPage = (req, res) => {
 
 // rendering edit page 
 const editPage = (req, res) => {
-    res.render('update', {user: req.user, title: 'Update' });
+    res.render('update', { user: req.user, title: 'Update' });
 }
 
 // create a new account
@@ -66,6 +66,7 @@ const registerAccount = (req, res) => {
                     errors.push({ msg: 'This Email already exists' });
                     res.render('register', { title: 'Register', errors });
                 } else {
+                    // making a new instance of a user
                     const newUser = new UserData({ name, email, password });
 
                     // hashing the password using Bcrypt
@@ -87,8 +88,9 @@ const registerAccount = (req, res) => {
 }
 
 // login user
-const loginAccount = () => {
-
+const loginAccount = (req, res) => {
+    req.flash("success_msg", "You have successfully logged in!");
+    res.redirect("/dashboard");
 }
 
 //update profile
@@ -97,7 +99,7 @@ const updateProfile = (req, res) => {
     const id = req.params.id;
     UserData.findByIdAndUpdate(id, updateData)
         .then(() => {
-            req.flash( "success_msg", "You have successfully updated your User Profile!" );
+            req.flash("success_msg", "You have successfully updated your User Profile!");
             res.redirect("/dashboard");
         })
         .catch(err => console.log(err));
@@ -110,7 +112,7 @@ const logoutUser = (req, res) => {
             console.log(err);
             return next(err);
         }
-          req.flash("success_msg", "You have successfully logged out!");
+        req.flash("success_msg", "You have successfully logged out!");
         res.redirect("/login");
     });
 }

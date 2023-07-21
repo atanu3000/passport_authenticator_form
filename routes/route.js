@@ -16,10 +16,16 @@ router.get('/edit', ensureAuthenticated, formControllers.editPage);
 router.post('/register', formControllers.registerAccount);
 
 // Login to Dashboard
-router.post("/login", passport.authenticate("local", { failureRedirect: "/login", failureFlash: true, }), (req, res) => {
-  req.flash("success_msg", "You have successfully logged in!");
-  res.redirect("/dashboard");
-});
+router.post("/login", 
+  passport.authenticate("local", { failureRedirect: "/login", failureFlash: true, }), 
+  formControllers.loginAccount);
+
+// Routes for Google sign-up
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get( '/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login', failureFlash: true,}), 
+  formControllers.loginAccount);
 
 // update profile 
 router.post('/edit/:id', formControllers.updateProfile);

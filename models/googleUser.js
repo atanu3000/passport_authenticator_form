@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
     {
+        googleId: {
+            type: String,
+        },
         name: {
             type: String,
             required: true,
@@ -12,13 +15,9 @@ const userSchema = new Schema(
             required: true,
             unique: true,
         },
-        password: {
-            type: String,
-            required: true,
-        }
     },
     { timestamps: true, }
 );
 
-const UserData = mongoose.model('UserInfo', userSchema);
-module.exports = UserData;
+const GoogleUser = mongoose.model('googleUser', userSchema);
+module.exports = GoogleUser;
