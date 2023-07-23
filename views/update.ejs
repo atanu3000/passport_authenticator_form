@@ -28,6 +28,14 @@
                     />
                 </div>
                 <div class="mb-3">
+                    <% if(isLocalUser) {%>
+                    <a href="/change_password/" class="form-control btn btn-success" type="submit">Change Password</a>
+                    <%} else {%>
+                        <button class="form-control btn btn-success" type="button" disabled>Change Password</button>
+                        <span class="text-secondary fst-italic">Change Password is disabled for Google users.</span>
+                    <%}%>
+                </div>
+                <div class="mb-3">
                     <button class="form-control btn btn-primary" type="submit">UPDATE</button>
                 </div>
             </form>

@@ -50,7 +50,13 @@ const registerPage = (req, res) => {
 
 // rendering edit page 
 const editPage = (req, res) => {
-    res.render('update', { user: req.user, title: 'Update' });
+    const localuser = req.isAuthenticated() ? req.user : null;
+    res.render('update', { user: req.user, isLocalUser: localuser ? localuser.isLocalUser : false, title: 'Update' });
+}
+
+// rendering change password page
+const changePasswordPage = (req, res) => {
+    res.render('changePassword', { user: req.user, title: 'Change Password' });
 }
 
 // create a new account
@@ -80,7 +86,7 @@ const registerAccount = (req, res) => {
                     res.render('register', { title: 'Register', errors });
                 } else {
                     // making a new instance of a user
-                    const newUser = new UserData({ name, email, password });
+                    const newUser = new UserData({ name, email, password, isLocalUser: true, });
 
                     // hashing the password using Bcrypt
                     bcrypt.genSalt(10, (err, salt) => {
@@ -118,6 +124,50 @@ const updateProfile = (req, res) => {
         .catch(err => console.log(err));
 }
 
+// change password
+const changePassword = async (req, res) => {
+    const { oPassword, nPassword, cPassword } = req.body;
+    const id = req.params.id;
+    const errors = [];
+
+    try {
+        const user = await UserData.findById(id);
+        if (!user) {
+            errors.push({msg: 'User not found'});
+        }
+
+        const passwordMatch = await bcrypt.compare(oPassword, user.password);
+        if (!passwordMatch) {
+            errors.push({msg: 'Incorrect Password!'});
+        }
+
+        if (nPassword !== cPassword) {
+            errors.push({msg: "Passwords don't match"});
+        }
+
+        if (nPassword.length < 8) {
+            errors.push({msg: 'Password must be atleat 8 characters'});
+        }
+
+        if (errors.length > 0) {
+            return res.render('changePassword', {user, title: 'Change Password', errors});
+        }
+
+        // Hash the new password before saving it to the database.
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(nPassword, saltRounds);
+
+        // Update the user's password in the database.
+        user.password = hashedPassword;
+        await user.save();
+        // Log out the user after password change (moved after rendering the page)
+        res.redirect('/logout');
+        
+    } catch (error) {
+        return res.status(500).json({ message: "An error occurred while changing the password." });
+    }
+};
+
 //logout
 const logoutUser = (req, res) => {
     req.logout((err) => {
@@ -141,4 +191,6 @@ module.exports = {
     logoutUser,
     editPage,
     updateProfile,
+    changePasswordPage,
+    changePassword,
 };

@@ -11,6 +11,7 @@ router.get('/login', forwardAuthenticated, formControllers.loginPage);
 router.get('/register', forwardAuthenticated, formControllers.registerPage);
 router.get('/dashboard', ensureAuthenticated, formControllers.dashboard);
 router.get('/edit', ensureAuthenticated, formControllers.editPage);
+router.get('/change_password', ensureAuthenticated, formControllers.changePasswordPage);
 
 // create a new account
 router.post('/register', formControllers.registerAccount);
@@ -29,6 +30,9 @@ router.get( '/auth/google/callback',
 
 // update profile 
 router.post('/edit/:id', formControllers.updateProfile);
+
+// change password
+router.post('/change_password/:id', formControllers.changePassword);
 
 // Logout
 router.get("/logout", formControllers.logoutUser);

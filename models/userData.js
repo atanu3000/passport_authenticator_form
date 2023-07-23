@@ -15,7 +15,11 @@ const userSchema = new Schema(
         password: {
             type: String,
             required: true,
-        }
+        },
+        isLocalUser: {
+            type: Boolean,
+            default: true, // Set to true for local users by default
+        },
     },
     { timestamps: true, }
 );

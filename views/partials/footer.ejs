@@ -5,8 +5,10 @@
 ></script>
 <script>
     setInterval(() => {
-        let flash = document.querySelector(".flash")
-        flash.innerHTML = ' ';
-        flash.classList.remove("alert");
+        let flash = document.querySelectorAll(".flash");
+        flash.forEach((flashElement) => {
+            flashElement.innerHTML = " ";
+            flashElement.classList.remove("alert");
+        });
     }, 3000);
 </script>
