@@ -18,8 +18,9 @@ Command	Description
 |Sl No.| Command               | Description                                       |
 |------|-----------------------|---------------------------------------------------|
 |1. | `npm install` or `npm i`   | To download necessary dependencies.              |
-|2. | `npm run dev`          | To start the app in your local server.           |
+|2. | `npm run dev`          | To start the app in your local server. <br> 👉 `localhost:5000`|
 |3. | `npm run build`        | To build for production.                         |
 
+ NOTE: `Keep the dev port 5000 as it is `
 ## Live Demo
 Page live at 👉 https://passport-authenticator-form.onrender.com/
