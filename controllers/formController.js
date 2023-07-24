@@ -161,7 +161,14 @@ const changePassword = async (req, res) => {
         user.password = hashedPassword;
         await user.save();
         // Log out the user after password change (moved after rendering the page)
-        res.redirect('/logout');
+        req.logout((err) => {
+            if (err) {
+                console.log(err);
+                return next(err);
+            }
+            req.flash("success_msg", "Password have changed successfully!");
+            res.redirect("/login");
+        });
         
     } catch (error) {
         return res.status(500).json({ message: "An error occurred while changing the password." });
